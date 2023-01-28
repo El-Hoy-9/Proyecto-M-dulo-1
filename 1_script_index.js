@@ -1,0 +1,1 @@
+//he creado dos archivos de JS porque teniendo sólo uno intentaba ejecutar el fetch también en la página inicial (para el formulario).

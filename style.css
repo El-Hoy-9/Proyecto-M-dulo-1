@@ -1,6 +1,29 @@
 header{
  background-color: red;
+ width:100%;
+
 }
 body{
-    background-image: blue;
+    background-color: grey;
+    width:100%;
+}
+#game_info{
+    background-color: green;
+    width:100%;
+}
+
+@media (min-width: 700px){
+ 
+    header{
+        background-color: red;
+        width:100%;
+    }
+    body{
+       background-color: grey;
+    }
+    #game_info{
+    background-color: green;
+    width:100%;
+    flex-wrap: wrap;
+    }
 }
