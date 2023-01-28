@@ -1,15 +1,40 @@
-header{
- background-color: red;
- width:100%;
+/* 
+He ido añadiendo cosas y probando, esto del CSS es un dolor de cabeza...
 
+
+
+*/
+
+header{
+    
+    background-color: red;   
 }
 body{
-    background-color: grey;
-    width:100%;
+    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp2900280.jpg&f=1&nofb=1&ipt=7039aa3f7b3bbb9e0bfa83b4934391914f3f13259342dc4dcf46038a6afddfa8&ipo=images);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+footer{
+    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Ff9%2F10%2F93%2Ff91093b7300c29a32145131a7762b70f--pac-man-nintendo.jpg&f=1&nofb=1&ipt=c2d4c6324ce571069ac28c5b51f487f638399ff4ded0f23351b453051a42adbd&ipo=images);
+    width: 100%;
+    height: 30px;
+}
+
+img{
+    max-width: 100%;
+    max-height: 100%;
 }
 #game_info{
     background-color: green;
-    width:100%;
+    width: 95%;
+}
+#game-screenshot{
+    block-size: 45%
+}
+#game-description{
+    block-size: 45%;
 }
 
 @media (min-width: 700px){
@@ -19,11 +44,15 @@ body{
         width:100%;
     }
     body{
-       background-color: grey;
+       background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp2900280.jpg&f=1&nofb=1&ipt=7039aa3f7b3bbb9e0bfa83b4934391914f3f13259342dc4dcf46038a6afddfa8&ipo=images);
+       background-size: cover;
+       background-repeat: no-repeat;
+       background-position: center;
+       background-attachment: fixed;
     }
     #game_info{
     background-color: green;
     width:100%;
     flex-wrap: wrap;
-    }
+}
 }
