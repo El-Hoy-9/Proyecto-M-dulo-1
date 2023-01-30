@@ -5,17 +5,22 @@ He ido añadiendo cosas y probando, esto del CSS es un dolor de cabeza...
 header{
     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freeemulator.com%2Fwp-content%2Fuploads%2F2018%2F06%2Fcompatibility-header.jpg&f=1&nofb=1&ipt=5e67b7fcf4d9d71f3f6c2d6834276337af3ca726533cf30333e7ff2f7224528e&ipo=images);
     background-size: cover;
-
     width: 100%;
     color: white;
+    text-align: center;
 }
+a:visited {
+    color: white;
+}
+
 body{
     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.yJHCep63lemH0wIPI9eOwwHaE7%26pid%3DApi&f=1&ipt=38df3fca0f1e5c8d12c806f10e98a49ffdde6713efe0f1522234ab76df615bd6&ipo=images);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: fixed;   
 }
+/* parrafo de la pagina principal*/
 #descripcion{
     color:white;
 }
@@ -60,28 +65,36 @@ img{
 }
 /*-----------------------------------------------------------------------------*/
    @media (max-width: 767px){
-
+    body{
+        background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.yJHCep63lemH0wIPI9eOwwHaE7%26pid%3DApi&f=1&ipt=38df3fca0f1e5c8d12c806f10e98a49ffdde6713efe0f1522234ab76df615bd6&ipo=images);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;   
+    }
     /* imagen de la pagina principal */
     #principal_img{
         width: 50%;
         position: fixed;
         right: 5px;;
-    
+        
     } 
-   
-     img{
+    
+    img{
         max-width: 100%;
         max-height: 100%;
     } 
     #game_info{ 
-         display: flex; 
-         width: 95%;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+         width: 90%;
     }
     #game-screenshot{
+        width: 60%;
         max-width: 50%;
     }
     #game-description{
-        width: 50%;
+        width: 60%;
         background-color: blue; 
     }
 
