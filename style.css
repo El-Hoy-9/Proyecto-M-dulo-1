@@ -34,9 +34,7 @@ select{
 img{
     max-width: 100%;
     max-height: 100%;
-    background-color: white;
-
-}
+} 
 #game_info{
     display: flex;
     width: 95%;
