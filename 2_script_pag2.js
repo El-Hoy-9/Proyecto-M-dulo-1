@@ -37,10 +37,13 @@ function fillGameData(id){
         .then(response => {
             document.getElementById("game-screenshot").innerHTML =`
 			<img src="${response.background_image}"/>
+            <img src="${response.background_image_additional}"/>
 			`
 			document.getElementById("game-description").innerHTML =`
             <h3 id="gameTitle">${response.name}<h3>
 			<p>${response.description_raw}</p>
+            <a href="${response.website}"target="_blank">${response.website}</a>
+            <h2>${response.rating + "/" + response.rating_top}</h2>
             `
             gameId = id;
             gameName = response.name;

@@ -16,6 +16,9 @@ body{
     background-position: center;
     background-attachment: fixed;
 }
+p{
+    color:white;
+}
 /* imagen de la pagina principal */
 #principal_img{
     width: 50%;
