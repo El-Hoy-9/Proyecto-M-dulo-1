@@ -51,7 +51,14 @@ img{
     
 }
 /*-----------------------------------------------------------------------------*/
-/* @media (min-width: 700px){
- 
+ /* @media (max-width: 767px){
 
+    #game-description{
+        max-width: 40%;
+        width: 40%;
+        background-color: blue;
+        color: white;
+        display: grid;
+
+    }
 } */
