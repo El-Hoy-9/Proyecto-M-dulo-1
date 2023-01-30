@@ -38,7 +38,7 @@ function fillGameData(id){
         .then(response => response.json())
         .then(response => {
             document.getElementById("game-screenshot").innerHTML =`
-			<img src="${response.background_image}"/>
+			<img id="imgtitle" src="${response.background_image}"/>
             <img src="${response.background_image_additional}"/>
 			`
 			document.getElementById("game-description").innerHTML =`
