@@ -16,15 +16,14 @@ body{
     background-position: center;
     background-attachment: fixed;
 }
-p{
+#descripcion{
     color:white;
 }
 /* imagen de la pagina principal */
 #principal_img{
     width: 50%;
     position: fixed;
-    right:0;
-
+    right: 5px;;
 }
 footer{
     width: 100%;
@@ -33,12 +32,14 @@ footer{
     left: 0;
     bottom: 0px;
     width: 100%;
-    
+}
+#logo{
+    background-color: white;
 }
 select{
     background-color: indigo;
     color: white;
-
+    
 }
 
 img{
@@ -55,6 +56,7 @@ img{
 #game-description{
     width: 50%;
     background-color: green; 
+    padding: 2vh 2vh;
 }
 /*-----------------------------------------------------------------------------*/
    @media (max-width: 767px){
@@ -63,7 +65,7 @@ img{
     #principal_img{
         width: 50%;
         position: fixed;
-        right:0;
+        right: 5px;;
     
     } 
    
