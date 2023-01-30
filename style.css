@@ -16,6 +16,13 @@ body{
     background-position: center;
     background-attachment: fixed;
 }
+/* imagen de la pagina principal */
+#principal_img{
+    width: 50%;
+    position: fixed;
+    right:0;
+
+}
 footer{
     width: 100%;
     height: 30px;
@@ -44,29 +51,33 @@ img{
 }
 #game-description{
     width: 50%;
-    background-color: green;
-
-    
+    background-color: green; 
 }
 /*-----------------------------------------------------------------------------*/
-  @media (max-width: 767px){
-    img{
+   @media (max-width: 767px){
+
+    /* imagen de la pagina principal */
+    #principal_img{
+        width: 50%;
+        position: fixed;
+        right:0;
+    
+    } 
+   
+     img{
         max-width: 100%;
         max-height: 100%;
-        background-color: white;
-    
-    }
-    #game_info{
-        width: 95%;
+    } 
+    #game_info{ 
+         display: flex; 
+         width: 95%;
     }
     #game-screenshot{
         max-width: 50%;
     }
     #game-description{
         width: 50%;
-        background-color: blue;
-    
-        
+        background-color: blue; 
     }
 
-}
+} 
