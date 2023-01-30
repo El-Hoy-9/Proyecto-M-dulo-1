@@ -3,6 +3,9 @@
 let ps5Url = "https://api.rawg.io/api/games?key=a54da435e4834c4e89349168b5099f6f&platforms=187";
 let key = "?key=a54da435e4834c4e89349168b5099f6f"
 let api = "https://api.rawg.io/api/games/";
+let res;
+let gameName;
+let gameId;
 
 //_fillForm_ rellena el select con las opciones( de momento sólo los 20 primeros juegos)
 //Todavía no se por qué rellena una opción vacía entre las opciones de los juegos.
@@ -12,16 +15,19 @@ function fillForm(url){
         .then(response => response.json())
         .then(response => {
             console.log(response)
-           // debugger
-            for (i = 0; i < response.results.length; i++)
-            document.querySelector("select").innerHTML += `
-            <option value=${response.results[i].id}>${response.results[i].name}<option>`
+            res = response;
+            for (i = 0; i < response.results.length; i++){
+                document.getElementById("gameList").innerHTML += `
+                <option value="${response.results[i].id}">${response.results[i].name}</option>`
+            }
+            if (res.next != null){
+                fillForm(res.next);
+            }
 		})
 		.catch(err => {
-			console.error(err)
-			alert("game over")
+			console.error(err);
+			alert("game over");
 		});
-   
 }
 
 //_fillGameData_ rellena los datos de cada juego, de momento sólo he puesto foto y descripción
@@ -33,14 +39,35 @@ function fillGameData(id){
 			<img src="${response.background_image}"/>
 			`
 			document.getElementById("game-description").innerHTML =`
+            <h3 id="gameTitle">${response.name}<h3>
 			<p>${response.description_raw}</p>
             `
+            gameId = id;
+            gameName = response.name;
         })
 }
 
 fillForm(ps5Url); //ejecuta el _fillform_ para crear el formulario.
-
 //ejecuta _fillgamedata_ al cambiar la opción del formulario
-document.querySelector("select").addEventListener("change", function(){
-	fillGameData(document.querySelector("select").value,);
+document.getElementById("gameList").addEventListener("change", function(){
+    fillGameData(document.getElementById("gameList").value,);
 })
+
+
+
+
+//  document.getElementById("wishList").innerHTML += `
+//  <option value=${id}>${name}<option>
+function addToWishlist(id, name){
+    localStorage.setItem(gameId, id);
+    localStorage.setItem(gameName,name);
+}
+function fillWishlist(id, name){
+    document.getElementById("wishList") += `
+    <option value="${id}">${name}</option>
+    `
+}
+
+document.getElementById("addTo").addEventListener("click", function(){
+    addToWishlist(gameId, gameName)
+});
