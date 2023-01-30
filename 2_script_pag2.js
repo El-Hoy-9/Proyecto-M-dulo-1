@@ -10,6 +10,8 @@ let gameId;
 //_fillForm_ rellena el select con las opciones( de momento sólo los 20 primeros juegos)
 //Todavía no se por qué rellena una opción vacía entre las opciones de los juegos.
 // quería poner un alert con una foto de game over para el .catch, pero de momento sólo de texto que parece jodido de hacer.
+
+if (gameList !==0){
 function fillForm(url){
     fetch(url)
         .then(response => response.json())
@@ -28,7 +30,7 @@ function fillForm(url){
 			console.error(err);
 			alert("game over");
 		});
-}
+}}
 
 //_fillGameData_ rellena los datos de cada juego, de momento sólo he puesto foto y descripción
 function fillGameData(id){
@@ -41,8 +43,9 @@ function fillGameData(id){
 			`
 			document.getElementById("game-description").innerHTML =`
             <h3 id="gameTitle">${response.name}<h3>
-			<p>${response.description_raw}</p>
+			<h4>${response.description_raw}</h4>
             <a href="${response.website}"target="_blank">${response.website}</a>
+            
             <h2>${response.rating + "/" + response.rating_top}</h2>
             `
             gameId = id;
