@@ -44,49 +44,101 @@ function fillWishlist(){
 
 //_fillGameData_ rellena los datos de cada juego------------------------------------------------------
 function fillGameData(id){
-    fetch(api + id + key)
-    .then(response => response.json())
-    .then(response => {
-        document.getElementById("game-screenshot").innerHTML =`
-        <img src="${response.background_image}"/>
-        `
-        document.getElementById("game-description").innerHTML =`
-        <h3 id="gameTitle">${response.name}<h3>
-        <p>${response.description_raw}</p>
-        `
-        gameId = id;
-        gameName = response.name;
-    })
+	fetch(api + id + key)
+        .then(response => response.json())
+        .then(response => {
+            document.getElementById("game-screenshot").innerHTML =`
+			<img id="imgTitle" src="${response.background_image}"/>
+            <img id= "imgAdditional" src="${response.background_image_additional}"/>
+			`
+			document.getElementById("game-description").innerHTML =`
+            <h3 id="gameTitle">${response.name}<h3>
+			<h4 class="description">${response.description_raw}</h4>
+            <a class="description" href="${response.website}"target="_blank">${"Página principal: "+ response.website}</a>
+            <h2 class="description">${response.rating + "/" + response.rating_top}</h2>
+            `
+            gameId = id;
+            gameName = response.name;
+        })
 }
 
-
-//rellena la lista de deseados------------------------------------------------------------------
+//modifica la lista de deseados-
 function addToWishlist(id, name){
-    for(i = 0; i < wishlist.length; i++){
-        
-        if(wishlist[i].id === id){ 
-            wishlist = wishlist.filter(wish => wish.id != id);
-            localStorage.setItem(wishlist);
-        }
-        else{
-            wishlist[i].id = id;
-            wishlist[i].name = name;
-            localStorage.setItem(wishlist);
-
-        }    
-    }   
+    let wishlist = localStorage.getItem(`wishList`);
+    let wish = JSON.parse(wishlist);
+    if (wish != null){  
+        let x = findWithAttr(wish, "id", id);
+            if(x != -1){ 
+                let temp = wish.splice(x, 1);
+                wish = JSON.stringify(wish);
+                localStorage.setItem(`wishList`, wish);
+            }
+            else{
+                game = {id: null, name: null};
+                game.id = id;
+                game.name = name;
+                wish.push(game);
+                wish = JSON.stringify(wish);
+                localStorage.setItem(`wishList`, wish);
+            }
+    }
+    else{
+    wish = [], game = {id: null, name: null};
+    wish.push(game);
+    wish[0].id = id;
+    wish[0].name = name;
+    wish = JSON.stringify(wish)
+    localStorage.setItem(`wishList`, wish);
+    }
+    wishlist = localStorage.getItem(`wishList`);
+    if (wishlist.length == 0){
+        localStorage.removeItem(`wishList`);
+    }
 }
 
-//-------------------------------------------------------------------------------
-fillForm(ps5Url); //ejecuta el _fillform_ para crear el formulario.
+//imprime la lista de deseados
+function fillWishlist(){
+    let wishlist = localStorage.getItem(`wishList`);
+    let wishp = JSON.parse(wishlist)
+console.log(wishp);
+    if (wishp == null){
+        document.getElementById("wishList").innerHTML += `
+        <option>Wishlist empty</option>
+        `}
+    else{
+        for (i = 0; i < wishp.length; i ++){
+            document.getElementById("wishList").innerHTML += `
+            <option value="${wishp[i].id}">${wishp[i].name}</option>
+            `}
+    }
+}
+//---------------------------------------------
+//busca si el id de game está ya en la whislist y retorna posición (como el indexOf, -1 si no está).
+function findWithAttr(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//-------------------------------------------------------------------------------------------
+if (gameList != 0)
+    fillForm(ps5Url);
 fillWishlist();
 //ejecuta _fillgamedata_ al cambiar la opción del formulario
 document.getElementById("gameList").addEventListener("change", function(){
     fillGameData(document.getElementById("gameList").value,);
 })
+        
 //añade a la lista de deseados al hacer click
 document.getElementById("addTo").addEventListener("click", function(){
-    addToWishlist(gameId, gameName)
+    document.getElementById("wishList").innerHTML = ``
+            addToWishlist(gameId, gameName);
+            fillWishlist();
 });
 
-//------------------------------------------------------------------------------------------------
+
+
+
