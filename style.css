@@ -1,7 +1,82 @@
+@media (max-width: 767px){
+   /* barra lateral*/
+    .sidebar{
+        float:left;
+        width: 20%;
+        height: 600px;
+        background-color: orange;
+    }
+    #favs{
+        display:flex;
+        flex-direction: column;
+        width: 3rem;
+        height: 3rem;
+        border:0;
+        background: transparent;
+        gap:0.65rem;
+    }
+    #favs > div{
+        background: white;
+        height: 2px;
+        width: 100%;
+        border-radius: 5px;
+        transition: all 0.5s;
+        transform-origin: left;
+    }
+    #favs:hover div:first-child{
+        transform: rotate(45deg);
+    }
+    #favs:hover div:nth-child(2){
+        opacity: 0;
+    }
+    #favs:hover div:last-child{
+        transform: rotate(-45deg);
+    }
+    /* imagen de la pagina principal */
+    #principal_img{
+     width: 50%;
+     position: fixed;
+     right: 5px;;   
+ } 
+ /* imagen principal del juego*/
+ #imgtitle:hover {
+     transform: scale(1.2);
+ }
+ /* imagen fondo*/
+ img{
+     max-width: 100%;
+     max-height: 100%;
+    } 
+ /* toda la info del juego, img y descripcion*/   
+    #game_info{ 
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 90%;
+    }
+ /* img del juego*/   
+    #game-screenshot{
+        width: 40%;
+        /* background-size: cover; */
+      
+        /* justify-content: space-around; */
+    }
+  /* descripcion del juego */  
+  #game-description{
+      width: 100%;
+      
+    }
+    select{ 
+        width: 60%;
+    }
+} 
+/*-----------------------------------------------------------------------------*/
 /* 
 He ido añadiendo cosas y probando, esto del CSS es un dolor de cabeza...
 */
-
+select{
+    background-color: indigo;
+    color: white;  
+}
 header{
     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freeemulator.com%2Fwp-content%2Fuploads%2F2018%2F06%2Fcompatibility-header.jpg&f=1&nofb=1&ipt=5e67b7fcf4d9d71f3f6c2d6834276337af3ca726533cf30333e7ff2f7224528e&ipo=images);
     background-size: cover;
@@ -9,93 +84,88 @@ header{
     color: white;
     text-align: center;
 }
-a:visited {
-    color: white;
-}
-
 body{
     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.yJHCep63lemH0wIPI9eOwwHaE7%26pid%3DApi&f=1&ipt=38df3fca0f1e5c8d12c806f10e98a49ffdde6713efe0f1522234ab76df615bd6&ipo=images);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;   
+    justify-content: space-evenly;
+   }
+/* titulo principal*/
+h1 {
+    font-family: 'Satisfy', cursive;
 }
+/* enlaces*/
+a:visited {
+    color: white;
+}
+
 /* parrafo de la pagina principal*/
 #descripcion{
     color:white;
+    width: 40%;
+    padding: 2vh 2vh;
 }
-/* imagen de la pagina principal */
-#principal_img{
-    width: 50%;
-    position: fixed;
-    right: 5px;;
-}
+    /* imagen de la pagina principal */
+    #principal_img{
+        width: 40%;
+        position: fixed;
+        right: 5px;;   
+    } 
 footer{
     width: 100%;
     height: 30px;
     position: fixed;
     left: 0;
     bottom: 0px;
-    width: 100%;
+    justify-content: space-evenly;
 }
-#logo{
+.logo{
     background-color: white;
+    max-width: 100%;
+    max-height: 100%;
 }
-select{
-    background-color: indigo;
-    color: white;
-    
-}
-
 img{
     max-width: 100%;
     max-height: 100%;
-} 
+}  
 #game_info{
     display: flex;
-    width: 95%;
+    width: 100%;
+    justify-content: space-between;
+    margin: 0;
 }
 #game-screenshot{
-    max-width: 50%;
+    width: 90%;
+    justify-content: space-between; 
 }
-#game-description{
-    width: 50%;
-    background-color: green; 
-    padding: 2vh 2vh;
-}
-/*-----------------------------------------------------------------------------*/
-   @media (max-width: 767px){
-    body{
-        background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.yJHCep63lemH0wIPI9eOwwHaE7%26pid%3DApi&f=1&ipt=38df3fca0f1e5c8d12c806f10e98a49ffdde6713efe0f1522234ab76df615bd6&ipo=images);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;   
-    }
-    /* imagen de la pagina principal */
-    #principal_img{
-        width: 50%;
-        position: fixed;
-        right: 5px;;
-        
-    } 
-    
-    img{
-        max-width: 100%;
-        max-height: 100%;
-    } 
-    #game_info{ 
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-         width: 90%;
-    }
-    #game-screenshot{
-        width: 60%;
-        max-width: 50%;
-    }
-    #game-description{
-        width: 60%;
-        background-color: blue; 
-    }
 
-} 
+#game-description{
+    --border-color: linear-gradient(to right, tomato 0%, gold 100%);
+   /* width: 80%;
+     background-image: url(https://i.pinimg.com/originals/61/71/81/6171819be4c31993357d758196c75701.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-color: green;
+    padding: 2vh 2vh;*/
+    background: var(--border-color);
+    width: 80%;
+    padding: 5px;
+    border-radius: 16px;
+}
+#description{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    border-radius: 16px;
+}
+#imgTitle:hover {
+    transform: scale(1.5);
+}
+#gameTitle {
+    font-family: 'Itim', cursive;
+}
