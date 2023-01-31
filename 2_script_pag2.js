@@ -6,12 +6,7 @@ let api = "https://api.rawg.io/api/games/";
 let res;
 let gameName;
 let gameId;
-
-//_fillForm_ rellena el select con las opciones( de momento sólo los 20 primeros juegos)
-//Todavía no se por qué rellena una opción vacía entre las opciones de los juegos.
-// quería poner un alert con una foto de game over para el .catch, pero de momento sólo de texto que parece jodido de hacer.
-
-if (gameList !==0){
+//_fillForm_ rellena el select con las opciones-----------------------------------------------------
 function fillForm(url){
     fetch(url)
         .then(response => response.json())
@@ -30,7 +25,7 @@ function fillForm(url){
 			console.error(err);
 			alert("game over");
 		});
-}}
+}
 
 //_fillGameData_ rellena los datos de cada juego, de momento sólo he puesto foto y descripción
 function fillGameData(id){
@@ -52,27 +47,83 @@ function fillGameData(id){
         })
 }
 
-fillForm(ps5Url); //ejecuta el _fillform_ para crear el formulario.
+//modifica la lista de deseados-
+function addToWishlist(id, name){
+    let wishlist = localStorage.getItem(`wishList`);
+    let wish = JSON.parse(wishlist);
+    if (wish != null){  
+        let x = findWithAttr(wish, "id", id);
+            if(x != -1){ 
+                let temp = wish.splice(x, 1);
+                wish = JSON.stringify(wish);
+                localStorage.setItem(`wishList`, wish);
+            }
+            else{
+                game = {id: null, name: null};
+                game.id = id;
+                game.name = name;
+                wish.push(game);
+                wish = JSON.stringify(wish);
+                localStorage.setItem(`wishList`, wish);
+            }
+    }
+    else{
+    wish = [], game = {id: null, name: null};
+    wish.push(game);
+    wish[0].id = id;
+    wish[0].name = name;
+    wish = JSON.stringify(wish)
+    localStorage.setItem(`wishList`, wish);
+    }
+    wishlist = localStorage.getItem(`wishList`);
+    if (wishlist.length == 0){
+        localStorage.removeItem(`wishList`);
+    }
+}
+
+//imprime la lista de deseados
+function fillWishlist(){
+    let wishlist = localStorage.getItem(`wishList`);
+    let wishp = JSON.parse(wishlist)
+console.log(wishp);
+    if (wishp == null){
+        document.getElementById("wishList").innerHTML += `
+        <option>Wishlist empty</option>
+        `}
+    else{
+        for (i = 0; i < wishp.length; i ++){
+            document.getElementById("wishList").innerHTML += `
+            <option value="${wishp[i].id}">${wishp[i].name}</option>
+            `}
+    }
+}
+//---------------------------------------------
+//busca si el id de game está ya en la whislist y retorna posición (como el indexOf, -1 si no está).
+function findWithAttr(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//-------------------------------------------------------------------------------------------
+if (gameList != 0)
+    fillForm(ps5Url);
+fillWishlist();
 //ejecuta _fillgamedata_ al cambiar la opción del formulario
 document.getElementById("gameList").addEventListener("change", function(){
     fillGameData(document.getElementById("gameList").value,);
 })
-
-
-
-
-//  document.getElementById("wishList").innerHTML += `
-//  <option value=${id}>${name}<option>
-function addToWishlist(id, name){
-    localStorage.setItem(gameId, id);
-    localStorage.setItem(gameName,name);
-}
-function fillWishlist(id, name){
-    document.getElementById("wishList") += `
-    <option value="${id}">${name}</option>
-    `
-}
-
+        
+//añade a la lista de deseados al hacer click
 document.getElementById("addTo").addEventListener("click", function(){
-    addToWishlist(gameId, gameName)
+    document.getElementById("wishList").innerHTML = ``
+            addToWishlist(gameId, gameName);
+            fillWishlist();
 });
+
+
+
+
