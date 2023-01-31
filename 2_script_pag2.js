@@ -3,7 +3,6 @@
 let ps5Url = "https://api.rawg.io/api/games?key=a54da435e4834c4e89349168b5099f6f&platforms=187";
 let key = "?key=a54da435e4834c4e89349168b5099f6f"
 let api = "https://api.rawg.io/api/games/";
-let res;
 let gameName;
 let gameId;
 //_fillForm_ rellena el select con las opciones-----------------------------------------------------
@@ -11,14 +10,12 @@ function fillForm(url){
     fetch(url)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
-            res = response;
             for (i = 0; i < response.results.length; i++){
                 document.getElementById("gameList").innerHTML += `
                 <option value="${response.results[i].id}">${response.results[i].name}</option>`
             }
-            if (res.next != null){
-                fillForm(res.next);
+            if (response.next != null){
+                fillForm(response.next);
             }
 		})
 		.catch(err => {
@@ -109,9 +106,10 @@ function findWithAttr(array, attr, value) {
 }
 
 //-------------------------------------------------------------------------------------------
-if (gameList != 0)
+if (document.getElementById("gameList"))
     fillForm(ps5Url);
-fillWishlist();
+if (document.getElementById("wishList"))
+    fillWishlist();
 //ejecuta _fillgamedata_ al cambiar la opción del formulario
 document.getElementById("gameList").addEventListener("change", function(){
     fillGameData(document.getElementById("gameList").value,);
@@ -123,7 +121,5 @@ document.getElementById("addTo").addEventListener("click", function(){
             addToWishlist(gameId, gameName);
             fillWishlist();
 });
-
-
 
 
