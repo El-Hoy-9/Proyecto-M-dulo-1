@@ -9,48 +9,42 @@ let gameId;
 //_fillForm_ rellena el select con las opciones-----------------------------------------------------
 function fillForm(url){
     fetch(url)
-    .then(response => response.json())
-    .then(response => {
-//        console.log(response)
-        res = response;
-        for (i = 0; i < response.results.length; i++){
-            document.getElementById("gameList").innerHTML += `
-            <option value="${response.results[i].id}">${response.results[i].name}</option>`
-        }
-        // if (res.next != null){
-        //     fillForm(res.next);
-        // }
-    })
-    .catch(err => {
-        console.error(err);
-        alert("game over");
-    });
-    /*----------------------------------------------------------AQUI//
-    document.getElementById("gameList").innerHTML += `
-    <option value="" selected disabled> Choose a game</option>`
-    
-    //----------------------------------------------------------AQUI*/
-    
-}
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            res = response;
+            for (i = 0; i < response.results.length; i++){
+                document.getElementById("gameList").innerHTML += `
+                <option value="${response.results[i].id}">${response.results[i].name}</option>`
+            }
+            if (res.next != null){
+                fillForm(res.next);
+            }
+		})
+		.catch(err => {
+			console.error(err);
+			alert("game over");
+		});
+}}
 
 //_fillGameData_ rellena los datos de cada juego, de momento sólo he puesto foto y descripción
 function fillGameData(id){
-    fetch(api + id + key)
-    .then(response => response.json())
-    .then(response => {
-        document.getElementById("game-screenshot").innerHTML =`
-        <img src="${response.background_image}"/>
-        <img src="${response.background_image_additional}"/>
-        `
-        document.getElementById("game-description").innerHTML =`
-        <h3 id="gameTitle">${response.name}<h3>
-        <p>${response.description_raw}</p>
-        <a href="${response.website}"target="_blank">${response.website}</a>
-        <h2>${response.rating + "/" + response.rating_top}</h2>
-        `
-        gameId = id;
-        gameName = response.name;
-    })
+	fetch(api + id + key)
+        .then(response => response.json())
+        .then(response => {
+            document.getElementById("game-screenshot").innerHTML =`
+			<img id="imgTitle" src="${response.background_image}"/>
+            <img id= "imgAdditional" src="${response.background_image_additional}"/>
+			`
+			document.getElementById("game-description").innerHTML =`
+            <h3 id="gameTitle">${response.name}<h3>
+			<h4 class="description">${response.description_raw}</h4>
+            <a class="description" href="${response.website}"target="_blank">${"Página principal: "+ response.website}</a>
+            <h2 class="description">${response.rating + "/" + response.rating_top}</h2>
+            `
+            gameId = id;
+            gameName = response.name;
+        })
 }
 
 //modifica la lista de deseados-
