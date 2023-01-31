@@ -25,7 +25,7 @@ function fillForm(url){
 			console.error(err);
 			alert("game over");
 		});
-}}
+}
 
 //_fillGameData_ rellena los datos de cada juego, de momento sólo he puesto foto y descripción
 function fillGameData(id){
@@ -48,7 +48,7 @@ function fillGameData(id){
 }
 
 //modifica la lista de deseados-
-function addToWishlist(id, name){s
+function addToWishlist(id, name){
     let wishlist = localStorage.getItem(`wishList`);
     let wish = JSON.parse(wishlist);
     if (wish != null){  
@@ -76,7 +76,6 @@ function addToWishlist(id, name){s
     localStorage.setItem(`wishList`, wish);
     }
     wishlist = localStorage.getItem(`wishList`);
-    control.log(wishlist);
     if (wishlist.length == 0){
         localStorage.removeItem(`wishList`);
     }
@@ -110,7 +109,8 @@ function findWithAttr(array, attr, value) {
 }
 
 //-------------------------------------------------------------------------------------------
-fillForm(ps5Url);
+if (gameList != 0)
+    fillForm(ps5Url);
 fillWishlist();
 //ejecuta _fillgamedata_ al cambiar la opción del formulario
 document.getElementById("gameList").addEventListener("change", function(){
