@@ -179,6 +179,8 @@ button{
     font-weight: bold;
     position: relative;
     border-radius: 12px;
+   } 
+}
 }
 button::before{
    content:"";
