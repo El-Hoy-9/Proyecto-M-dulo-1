@@ -12,7 +12,7 @@ function fillForm(url){
         .then(response => {
             console.log(response)
             res = response;
-            for (i = 0; i < response.results.length/8; i++){
+            for (i = 0; i < response.results.length / 8; i++){
                 document.getElementById("gameList").innerHTML += `
                 <option value="${response.results[i].id}">${response.results[i].name}</option>`
             }
@@ -84,7 +84,8 @@ function addToWishlist(id, name){
 function fillWishlist(){
     let wishlist = localStorage.getItem(`wishList`);
     let wishp = JSON.parse(wishlist)
-console.log(wishp);
+    document.getElementById("wishList").innerHTML = `
+    <option value="" selected disabled>Wishlist</option>`;
     if (wishp == null){
         document.getElementById("wishList").innerHTML += `
         <option>Wishlist empty</option>
@@ -115,6 +116,7 @@ fillWishlist();
 //ejecuta _fillgamedata_ al cambiar la opción del formulario
 document.getElementById("gameList").addEventListener("change", function(){
     fillGameData(document.getElementById("gameList").value,);
+    fillWishlist();
 })
         
 //añade a la lista de deseados al hacer click
@@ -123,7 +125,8 @@ document.getElementById("addTo").addEventListener("click", function(){
             addToWishlist(gameId, gameName);
             fillWishlist();
 });
-//ejecuta _fillgamedata_ al cambiar la opción del formulario
+//ejecuta _fillgamedata_  de la lista de deseados al cambiar la opción del formulario
 document.getElementById("wishList").addEventListener("change", function(){
     fillGameData(document.getElementById("wishList").value,);
+    fillForm(ps5Url);
 })
