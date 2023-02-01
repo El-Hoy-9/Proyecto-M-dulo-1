@@ -3,7 +3,6 @@
 let ps5Url = "https://api.rawg.io/api/games?key=a54da435e4834c4e89349168b5099f6f&platforms=187";
 let key = "?key=a54da435e4834c4e89349168b5099f6f"
 let api = "https://api.rawg.io/api/games/";
-let res;
 let gameName;
 let gameId;
 //_fillForm_ rellena el select con las opciones-
@@ -17,8 +16,8 @@ function fillForm(url){
                 document.getElementById("gameList").innerHTML += `
                 <option value="${response.results[i].id}">${response.results[i].name}</option>`
             }
-            if (res.next != null){
-                fillForm(res.next);
+            if (response.next != null){
+                fillForm(response.next);
             }
 		})
 		.catch(err => {
