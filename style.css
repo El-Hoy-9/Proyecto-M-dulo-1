@@ -1,36 +1,12 @@
 @media (max-width: 767px){
-   /* barra lateral*/
+        /* barra lateral*/
     .sidebar{
         float:left;
         width: 20%;
-        height: 600px;
+        height: 200px;
         background-color: orange;
-    }
-    #favs{
-        display:flex;
-        flex-direction: column;
-        width: 3rem;
-        height: 3rem;
-        border:0;
-        background: transparent;
-        gap:0.65rem;
-    }
-    #favs > div{
-        background: white;
-        height: 2px;
-        width: 100%;
-        border-radius: 5px;
-        transition: all 0.5s;
-        transform-origin: left;
-    }
-    #favs:hover div:first-child{
-        transform: rotate(45deg);
-    }
-    #favs:hover div:nth-child(2){
-        opacity: 0;
-    }
-    #favs:hover div:last-child{
-        transform: rotate(-45deg);
+        border-radius: 10px;
+
     }
     /* imagen de la pagina principal */
     #principal_img{
@@ -63,19 +39,24 @@
   /* descripcion del juego */  
   #game-description{
       width: 100%;
-      
+      margin-left: 9%;
     }
     select{ 
-        width: 60%;
+        width: 80%;
     }
 } 
 /*-----------------------------------------------------------------------------*/
 /* 
-He ido añadiendo cosas y probando, esto del CSS es un dolor de cabeza...
+He ido añadiendo cosas y probando
 */
 select{
     background-color: indigo;
-    color: white;  
+    color: white;
+    border-radius: 5px;  
+    font-size: 12px;
+    cursor: pointer;
+
+
 }
 header{
     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freeemulator.com%2Fwp-content%2Fuploads%2F2018%2F06%2Fcompatibility-header.jpg&f=1&nofb=1&ipt=5e67b7fcf4d9d71f3f6c2d6834276337af3ca726533cf30333e7ff2f7224528e&ipo=images);
@@ -85,7 +66,7 @@ header{
     text-align: center;
 }
 body{
-    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.yJHCep63lemH0wIPI9eOwwHaE7%26pid%3DApi&f=1&ipt=38df3fca0f1e5c8d12c806f10e98a49ffdde6713efe0f1522234ab76df615bd6&ipo=images);
+    background-image: url(https://i.pinimg.com/originals/7a/fd/d6/7afdd6915a8219f5dcdb89ff990a9a72.gif);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -97,22 +78,37 @@ h1 {
     font-family: 'Satisfy', cursive;
 }
 /* enlaces*/
-a:visited {
-    color: white;
+.enlace {  
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 20%;
+    border-radius: 16px;
+    text-align: center;
 }
 
 /* parrafo de la pagina principal*/
 #descripcion{
     color:white;
     width: 40%;
-    padding: 2vh 2vh;
+    padding: 5vh 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 40%;
+    width: 40%;
+    height: 80%;
+    border-radius: 16px;
 }
-    /* imagen de la pagina principal */
-    #principal_img{
-        width: 40%;
-        position: fixed;
-        right: 5px;;   
-    } 
+/* imagen de la pagina principal */
+#principal_img{
+    width: 40%;
+    background-attachment: fixed;   
+    float: right;
+    margin-right: 10px; 
+    margin-top: 150px;   
+} 
 footer{
     width: 100%;
     height: 30px;
@@ -143,23 +139,71 @@ img{
 }
 
 #game-description{
-    --border-color: linear-gradient(to right, tomato 0%, gold 100%);
+    --border-color: linear-gradient(to left, rgb(99, 9, 184) 0%, rgb(1, 13, 66) 100%);
     background: var(--border-color);
     width: 80%;
     padding: 5px;
     border-radius: 16px;
-}
-#description{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 80%;
-    border-radius: 16px;
+    text-align: center;
+    color:white;
+
 }
 #imgTitle:hover {
     transform: scale(1.5);
 }
 #gameTitle {
     font-family: 'Itim', cursive;
+}
+
+#presentacion{
+    --border-color: linear-gradient(to right, rgb(99, 9, 184) 0%, rgb(1, 13, 66) 100%);
+    background: var(--border-color);
+    padding: 2vh 2vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    max-width: 40%;
+    width: 40%;
+    height: 80%;
+    border-radius: 16px;
+
+}
+
+button{
+    background-color: indigo;
+    cursor: pointer;
+    border: none;
+    padding: 16px 32px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 12px;
+}
+button::before{
+   content:"";
+   position: absolute;
+   top:0;
+   left:0;
+   z-index: -1;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(
+    45deg, black, grey,white, black, grey,white
+   );
+   background-size: 800%;
+   border-radius: 10px;
+   filter: blur(8px);
+   animation: glowing 10s linear infinite;
+}
+@keyframes glowing{
+   0%{
+    background-position: 0 0;
+   } 
+   50%{
+    background-position: 400% 0;
+   } 
+   100%{
+    background-position: 0 0;
+   } 
 }
